@@ -1,0 +1,8 @@
+<app-sidebar
+  [apartment]="apartment$ | async"
+  [selectedId]="selectedRecordId"
+  (select)="onSelect($event)"
+></app-sidebar>
+<app-content
+  (select)="onSelect($event, false)"
+></app-content>

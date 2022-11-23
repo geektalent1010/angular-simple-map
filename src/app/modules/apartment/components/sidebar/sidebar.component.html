@@ -1,0 +1,52 @@
+<!--Main Navigation-->
+<header>
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush">
+        <a
+          routerLink="/apartment"
+          class="list-group-title list-group-item-action py-2 ripple"
+          aria-current="true"
+          (click)="select.emit(-1)"
+        >
+          <span>{{ (apartment && apartment.agentInfo) | fullnamecompany }}</span>
+        </a>
+        <div #scrolltarget class="scroll-content">
+          <div *ngFor="let record of (apartment && apartment.records)">
+            <app-sidebar-detail
+              id="{{ record.propertyID }}"
+              [record]="record"
+              [selectedId]="selectedId"
+              (select)="onSelect($event)"
+            ></app-sidebar-detail>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="toggleCollapsed()"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
